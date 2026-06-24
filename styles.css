@@ -1,0 +1,399 @@
+/* =========================================================================
+   Sturt Sabres — Member Business Directory
+   Identity: a printed game-day team program. Businesses are roster entries.
+   Palette taken from the club logo:
+     --ink      #20284A  deepest navy — text, borders, shadows
+     --navy     #283152  brand navy — solid blocks (jersey, scoreboard, steps)
+     --sky      #9EC0FF  brand sky blue — fills/accents on navy
+     --sky-ink  #3E63C4  readable blue — links + emphasis on light surfaces
+     --paper    #EFF3F9  cool program paper
+     --chalk    #FFFFFF
+     --rule     #D3DBE9  hairline
+     --muted    #586079  secondary text
+   Type:
+     Display  Anton (condensed, jersey-number energy)
+     Body     DM Sans
+     Data     Space Mono (member numbers, tags, stats)
+   ========================================================================= */
+
+:root {
+  --ink: #20284A;
+  --navy: #283152;
+  --sky: #9EC0FF;
+  --sky-ink: #3E63C4;
+  --paper: #EFF3F9;
+  --chalk: #FFFFFF;
+  --rule: #D3DBE9;
+  --muted: #586079;
+  --maxw: 1100px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--sky-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+/* ---------- top bar ---------- */
+.topbar {
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.topbar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand:hover { text-decoration: none; }
+.brand img.logo { height: 44px; width: auto; display: block; }
+.brandtag {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+}
+.topbar nav { display: flex; gap: 22px; align-items: center; }
+.topbar nav a {
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.btn {
+  display: inline-block;
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--sky);
+  color: var(--ink);
+  padding: 11px 18px;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+.btn.line { background: var(--navy); color: var(--chalk); }
+.btn.ghost { background: var(--paper); color: var(--ink); }
+
+/* ---------- hero / scoreboard ---------- */
+.hero { border-bottom: 2px solid var(--ink); padding: 64px 0 52px; }
+.eyebrow {
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sky-ink);
+  margin: 0 0 18px;
+}
+.hero h1 {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.94;
+  font-size: clamp(40px, 8vw, 88px);
+  margin: 0 0 22px;
+  max-width: 14ch;
+  color: var(--navy);
+}
+.hero h1 em { color: var(--sky-ink); font-style: normal; }
+.hero .lede {
+  font-size: clamp(17px, 2.2vw, 21px);
+  max-width: 52ch;
+  margin: 0 0 30px;
+  color: #2C3354;
+}
+
+/* scoreboard stat strip */
+.scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 2px solid var(--ink);
+  background: var(--navy);
+  width: fit-content;
+  max-width: 100%;
+}
+.scoreboard .cell {
+  padding: 14px 22px;
+  border-right: 2px solid #3A4570;
+  color: var(--chalk);
+}
+.scoreboard .cell:last-child { border-right: none; }
+.scoreboard .num {
+  font-family: "Anton", sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--sky);
+}
+.scoreboard .cell:nth-child(3) .num { color: var(--chalk); }
+.scoreboard .lbl {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #AEBBDC;
+  margin-top: 4px;
+}
+
+/* ---------- controls ---------- */
+.controls { padding: 34px 0 8px; }
+.searchrow { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.search {
+  flex: 1 1 300px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--ink);
+  background: var(--chalk);
+  padding: 12px 16px;
+}
+.search input {
+  border: 0;
+  outline: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  width: 100%;
+  background: transparent;
+  color: var(--ink);
+}
+.search svg { flex: 0 0 auto; color: var(--navy); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 6px; }
+.chip {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 8px 13px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .1s ease, color .1s ease;
+}
+.chip:hover { background: #E0E8F4; }
+.chip[aria-pressed="true"] { background: var(--navy); color: var(--chalk); }
+.chip[aria-pressed="true"].all { background: var(--sky-ink); border-color: var(--sky-ink); }
+
+.resultcount {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 14px 0 4px;
+}
+
+/* ---------- roster grid ---------- */
+.roster {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+  padding: 8px 0 64px;
+}
+.card {
+  background: var(--chalk);
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card .head {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 2px solid var(--ink);
+}
+.jersey {
+  flex: 0 0 auto;
+  width: 76px;
+  background: var(--navy);
+  color: var(--chalk);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 6px;
+}
+.jersey .hash { font-family: "Space Mono", monospace; font-size: 11px; color: #AEBBDC; }
+.jersey .no {
+  font-family: "Anton", sans-serif;
+  font-size: 40px;
+  line-height: 0.9;
+  color: var(--sky);
+}
+.head .who { padding: 12px 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.pos {
+  align-self: flex-start;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--sky);
+  padding: 3px 8px;
+}
+.card h3 {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 22px;
+  line-height: 1;
+  margin: 0;
+  color: var(--navy);
+}
+.card .body { padding: 16px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.owner {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.blurb { margin: 0; font-size: 15px; line-height: 1.5; }
+.meta { margin-top: auto; display: flex; flex-direction: column; gap: 6px; padding-top: 8px; border-top: 1px solid var(--rule); }
+.meta .row { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.meta .row .k {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex: 0 0 58px;
+}
+.meta a { color: var(--ink); }
+.meta a:hover { color: var(--sky-ink); }
+
+/* empty state */
+.empty {
+  border: 2px dashed var(--rule);
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
+.empty strong { color: var(--ink); display: block; font-size: 20px; margin-bottom: 6px; font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.02em;}
+
+/* ---------- footer ---------- */
+footer {
+  border-top: 2px solid var(--ink);
+  padding: 40px 0;
+  font-size: 14px;
+}
+footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+footer .fine { color: var(--muted); font-family: "Space Mono", monospace; font-size: 12px; letter-spacing: 0.03em; }
+
+/* ---------- content pages (list-your-business) ---------- */
+.page { padding: 56px 0 72px; }
+.page h1 {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.96;
+  font-size: clamp(36px, 6vw, 64px);
+  margin: 0 0 8px;
+  color: var(--navy);
+}
+.page h1 em { color: var(--sky-ink); font-style: normal; }
+.page h2 {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 24px;
+  margin: 40px 0 12px;
+  color: var(--navy);
+}
+.page p { max-width: 62ch; }
+.lead { font-size: 20px; max-width: 56ch; color: #2C3354; }
+
+.steps { list-style: none; counter-reset: step; padding: 0; margin: 24px 0; max-width: 64ch; }
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 16px 16px 16px 64px;
+  border: 2px solid var(--ink);
+  background: var(--chalk);
+  margin-bottom: 12px;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: -2px; top: -2px; bottom: -2px;
+  width: 48px;
+  background: var(--navy);
+  color: var(--sky);
+  font-family: "Anton", sans-serif;
+  font-size: 26px;
+  display: flex; align-items: center; justify-content: center;
+}
+.steps li strong { display: block; }
+
+.pricecard {
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  background: var(--chalk);
+  padding: 28px;
+  max-width: 420px;
+  margin: 24px 0 8px;
+}
+.pricecard .amt { font-family: "Anton", sans-serif; font-size: 60px; line-height: 1; color: var(--navy); }
+.pricecard .amt span { font-size: 22px; color: var(--muted); }
+.pricecard ul { margin: 18px 0 22px; padding-left: 20px; }
+.pricecard li { margin-bottom: 8px; }
+
+.callout {
+  border-left: 4px solid var(--sky-ink);
+  background: #E4ECFA;
+  padding: 14px 18px;
+  margin: 22px 0;
+  max-width: 64ch;
+  font-size: 15px;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .topbar nav a:not(.btn) { display: none; }
+  .brandtag { display: none; }
+  .brand img.logo { height: 38px; }
+  .roster { grid-template-columns: 1fr; }
+  .scoreboard { width: 100%; }
+  .scoreboard .cell { flex: 1; }
+}
+
+/* ---------- a11y ---------- */
+:focus-visible { outline: 3px solid var(--sky-ink); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
